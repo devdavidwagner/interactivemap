@@ -15,7 +15,16 @@ code {
 }
 
 /*IDS*/
-#map { height: 180px; }
+#map { 
+ }
+
+ #bossDiv{
+  width: 100vh;
+  height: 100vh;
+  display: inline-block;
+  padding-left: 30vh;
+
+ }
 
 
 /*CLASSES*/
