@@ -1,4 +1,5 @@
 import './App.css';
+import SlideShow from './assets/reactComponents/slideShow'; // Import the Slideshow component
 import React,{useState} from 'react';
 import { MapContainer, TileLayer, Marker, Popup, GeoJSON, useMap} from 'react-leaflet';
 import japanGeoJSON from './assets/geoJSON/japan.json';
@@ -6,6 +7,8 @@ import indonesiaGeoJSON from './assets/geoJSON/indonesia.json';
 import chinaGeoJSON from './assets/geoJSON/china.json';
 import usaGeoJSON from './assets/geoJSON/usa.json';
 import southKoreaJSON from './assets/geoJSON/skorea.json';
+
+
 const App = () => {
   //OBJECTS
   const [coordinates, setCoordinates] = useState([51.505, -0.09]);
@@ -49,7 +52,21 @@ const App = () => {
     setCoordinates([ latitude, longitude ]);
     setCenter([ latitude, longitude ]);
     setSelectedCountry(country);
+    generateImages(country);
   };
+
+  function generateImages(country){
+    
+  }
+
+  const renderImageDiv = () => {
+    
+    return(
+      <div id = "cityImages">
+
+      </div>
+    );
+  }
 
   function ChangeMapView({ coords }) {
     const map = useMap();
@@ -70,21 +87,21 @@ const App = () => {
 
   const renderMenu = () => {
     return (
-      <div>
+      <div id = "menu">
         <h1>Largest Cities</h1>
-        <button type="button" onClick={() => handleButtonClick(35.6762, 139.6503, countries.japan)}>
+        <button type="button" className = "btn" onClick={() => handleButtonClick(35.6762, 139.6503, countries.japan)}>
           Tokyo, Japan
         </button> 
-        <button type="button" onClick={() => handleButtonClick(-6.2088, 106.8456, countries.indonesia)}>
+        <button type="button" className = "btn" onClick={() => handleButtonClick(-6.2088, 106.8456, countries.indonesia)}>
           Jakarta, Indonesia
         </button> 
-        <button type="button" onClick={() => handleButtonClick(31.2304, 121.4737, countries.china)}>
+        <button type="button" className = "btn" onClick={() => handleButtonClick(31.2304, 121.4737, countries.china)}>
           Shanghai, China
         </button> 
-        <button type="button" onClick={() => handleButtonClick(40.7128, -74.0060, countries.usa)}>
+        <button type="button" className = "btn" onClick={() => handleButtonClick(40.7128, -74.0060, countries.usa)}>
           New York City, USA
         </button> 
-        <button type="button" onClick={() => handleButtonClick(37.5519, 126.9918, countries.skorea)}>
+        <button type="button" className = "btn" onClick={() => handleButtonClick(37.5519, 126.9918, countries.skorea)}>
           Seoul, South Korea
         </button> 
       </div>
@@ -130,8 +147,8 @@ const App = () => {
     <div id ="bossDiv">
       {renderHeader()}
       {renderMenu()}
+      <SlideShow/>
       {renderMap()}
-      {renderFooter()}
     </div>
   );
 
