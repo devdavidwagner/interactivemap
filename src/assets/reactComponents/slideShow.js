@@ -33,22 +33,19 @@ function Slideshow(selectedCountry) {
   useEffect(() => {
     generateImages();
     console.log('slideshow.js Selected Country changed:', selectedCountry.selectedCountry);
-    if(selectedCountry.selectedCountry == "IND"){
+    if (selectedCountry.selectedCountry === "IND") {
       setImages(imagesJakarta);
-    }
-    else if(selectedCountry.selectedCountry == "JPN"){
+    } else if (selectedCountry.selectedCountry === "JPN") {
       setImages(imagesTokyo);
-    }
-    else if(selectedCountry.selectedCountry == "CHN"){
+    } else if (selectedCountry.selectedCountry === "CHN") {
       setImages(imageShanghai);
-    }
-    else if(selectedCountry.selectedCountry == "USA"){
+    } else if (selectedCountry.selectedCountry === "USA") {
       setImages(imagesNYC);
-    }
-    else if(selectedCountry.selectedCountry == "SKO"){
+    } else if (selectedCountry.selectedCountry === "SKO") {
       setImages(imagesSeoul);
     }
-  }, [selectedCountry]); // This effect will run whenever selectedCountry changes
+  }, [selectedCountry, generateImages, imageShanghai, imagesJakarta, imagesNYC, imagesSeoul, imagesTokyo]);
+  
 
 
   useEffect(() => {
@@ -68,7 +65,7 @@ function Slideshow(selectedCountry) {
       {images.length > 0 && (
         <img
           src={images[currentIndex]}
-          alt={`Image ${currentIndex + 1}`}
+          alt={`Image ${currentIndex + 1} of ${selectedCountry.selectedCountry}`}
           style={{ width: '100%', height: '100%' }}
         />
       )}
