@@ -18,20 +18,20 @@ import seoul3 from './compImages/seoul3.webp';
 function Slideshow(selectedCountry) {
   const [images, setImages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const imagesJakarta = [jakarta1, jakarta2, jakarta3];
-  const imagesTokyo = [tokyo1, tokyo2, tokyo3];
-  const imageShanghai = [shanghai1, shanghai2, shanghai3];
-  const imagesNYC = [nyc1, nyc2, nyc3];
-  const imagesSeoul = [seoul1, seoul2, seoul3];
-
-  //default
-  const generateImages = () => {
-    setImages(imagesTokyo);
-  };
-
 
   useEffect(() => {
+    const imagesJakarta = [jakarta1, jakarta2, jakarta3];
+    const imagesTokyo = [tokyo1, tokyo2, tokyo3];
+    const imageShanghai = [shanghai1, shanghai2, shanghai3];
+    const imagesNYC = [nyc1, nyc2, nyc3];
+    const imagesSeoul = [seoul1, seoul2, seoul3];
+
+    const generateImages = () => {
+      setImages(imagesTokyo);
+    };
+
     generateImages();
+
     console.log('slideshow.js Selected Country changed:', selectedCountry.selectedCountry);
     if (selectedCountry.selectedCountry === "IND") {
       setImages(imagesJakarta);
@@ -44,8 +44,7 @@ function Slideshow(selectedCountry) {
     } else if (selectedCountry.selectedCountry === "SKO") {
       setImages(imagesSeoul);
     }
-  }, [selectedCountry, generateImages, imageShanghai, imagesJakarta, imagesNYC, imagesSeoul, imagesTokyo]);
-  
+  }, [selectedCountry]);
 
 
   useEffect(() => {
