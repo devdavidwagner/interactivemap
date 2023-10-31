@@ -29,11 +29,9 @@ function Slideshow(selectedCountry) {
     setImages(imagesTokyo);
   };
 
-  useEffect(() => {
-    generateImages();
-  }, []);
 
   useEffect(() => {
+    generateImages();
     console.log('slideshow.js Selected Country changed:', selectedCountry.selectedCountry);
     if(selectedCountry.selectedCountry == "IND"){
       setImages(imagesJakarta);

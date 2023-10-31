@@ -8,10 +8,11 @@ import chinaGeoJSON from './assets/geoJSON/china.json';
 import usaGeoJSON from './assets/geoJSON/usa.json';
 import southKoreaJSON from './assets/geoJSON/skorea.json';
 
+
 const App = () => {
   //OBJECTS
-  const [coordinates, setCoordinates] = useState([51.505, -0.09]);
-  const [center, setCenter] = useState([51.505, -0.09]);
+  const [coordinates, setCoordinates] = useState([35.6762, 139.6503]);
+  const [center, setCenter] = useState([35.6762, 139.6503]);
 
 
   const countries = {
@@ -75,15 +76,6 @@ const App = () => {
   }
 
 
-  //RENDERINGS 
-  const renderHeader = () =>{
-    return(
-      <header>
-        <h1>Interactive Map</h1>
-      </header>
-    );
-  };
-
   const renderMenu = () => {
     return (
       <div id = "menu">
@@ -108,9 +100,11 @@ const App = () => {
   };
 
   const renderMap = () => { 
+
+    const isMobile = window.innerWidth <= 768;
     return (
       <MapContainer id ="map" center={center} zoom={4}  worldCopyJump = {true}
-      style={{height: '50vh', width:'100vh'}}>
+      style={{ width: isMobile ? '40vh' : '100vh', height: isMobile ? '30vh' : '50vh' }}>
         <TileLayer
           continuousWorld={true} // Enables wrap-around effect
           noWrap={false} // Allows the map to repeat horizontally
@@ -135,21 +129,33 @@ const App = () => {
     );
   };
 
+  
+
   const renderFooter = () => {
     return (
       <footer>
-      <p>Written in Javascript with React by David Wagner - 2023</p>
-    </footer>
+      <p>         
+          Written with React/Javascript (maps via OpenStreetMap) by David Wagner - 2023 <br />
+          <br />
+          <a href="https://github.com/devdavidwagner/interactivemap">
+            <img src="./images/GitHub-Mark.png" alt="GitHub" width="20" height="20" style={{ verticalAlign: 'middle' }} /> Github Repository
+          </a>
+          <a href="https://www.linkedin.com/in/david-karl-wagner/">
+            <img src="./images/LinkedIn-Mark.PNG" alt="LinkedIn" width="20" height="20" style={{ verticalAlign: 'middle', paddingLeft: '25px' }} /> My LinkedIn
+          </a>
+    </p>
+  </footer>
     );
   };
 
   return(
     <div id ="bossDiv">
-      {renderHeader()}
       {renderMenu()}
       <SlideShow selectedCountry = {selectedCountry.name}/>
       {renderMap()}
+      {renderFooter()}
     </div>
+   
   );
 
 };
