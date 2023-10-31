@@ -65,7 +65,7 @@ function Slideshow(selectedCountry) {
       {images.length > 0 && (
         <img
           src={images[currentIndex]}
-          alt={`Image ${currentIndex + 1} of ${selectedCountry.selectedCountry}`}
+          alt={`${currentIndex + 1} of ${selectedCountry.selectedCountry}`}
           style={{ width: '100%', height: '100%' }}
         />
       )}
