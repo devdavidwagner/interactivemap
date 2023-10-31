@@ -104,7 +104,7 @@ const App = () => {
     const isMobile = window.innerWidth <= 768;
     return (
       <MapContainer id ="map" center={center} zoom={4}  worldCopyJump = {true}
-      style={{ width: isMobile ? '40vh' : '100vh', height: isMobile ? '30vh' : '50vh' }}>
+      style={{ width: isMobile ? '45vh' : '90vh', height: isMobile ? '30vh' : '45vh' }}>
         <TileLayer
           continuousWorld={true} // Enables wrap-around effect
           noWrap={false} // Allows the map to repeat horizontally
