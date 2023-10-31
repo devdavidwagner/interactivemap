@@ -1,6 +1,6 @@
 import './App.css';
 import SlideShow from './assets/reactComponents/slideShow'; // Import the Slideshow component
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import { MapContainer, TileLayer, Marker, Popup, GeoJSON, useMap} from 'react-leaflet';
 import japanGeoJSON from './assets/geoJSON/japan.json';
 import indonesiaGeoJSON from './assets/geoJSON/indonesia.json';
@@ -8,12 +8,11 @@ import chinaGeoJSON from './assets/geoJSON/china.json';
 import usaGeoJSON from './assets/geoJSON/usa.json';
 import southKoreaJSON from './assets/geoJSON/skorea.json';
 
-
 const App = () => {
   //OBJECTS
   const [coordinates, setCoordinates] = useState([51.505, -0.09]);
   const [center, setCenter] = useState([51.505, -0.09]);
-  const [selectedCountry, setSelectedCountry] = useState('Japan');
+
 
   const countries = {
     japan: {
@@ -38,6 +37,8 @@ const App = () => {
     },
   };
 
+  const [selectedCountry, setSelectedCountry] = useState(countries.japan);
+
   const countryStyle = {
     fillColor: 'blue', // Default style
     weight: 2,
@@ -45,6 +46,12 @@ const App = () => {
     color: 'white',
     fillOpacity: 0.7
   };
+
+  
+  useEffect(() => {
+    console.log('app.js Selected Country changed:',  selectedCountry.name);
+  }, [selectedCountry]); // This effect will run whenever selectedCountry changes
+
 
   //FUNCTIONS
   const handleButtonClick = (latitude, longitude, country) => {
@@ -59,14 +66,6 @@ const App = () => {
     
   }
 
-  const renderImageDiv = () => {
-    
-    return(
-      <div id = "cityImages">
-
-      </div>
-    );
-  }
 
   function ChangeMapView({ coords }) {
     const map = useMap();
@@ -131,6 +130,7 @@ const App = () => {
               fillColor: 'blue'// Update fill color based on selection
             })}
           />
+
       </MapContainer>
     );
   };
@@ -147,7 +147,7 @@ const App = () => {
     <div id ="bossDiv">
       {renderHeader()}
       {renderMenu()}
-      <SlideShow/>
+      <SlideShow selectedCountry = {selectedCountry.name}/>
       {renderMap()}
     </div>
   );
